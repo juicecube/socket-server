@@ -1,0 +1,23 @@
+{
+  "name": "socket-server",
+  "version": "1.0.0",
+  "description": "A socket server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turboHZW/socket-server.git"
+  },
+  "author": "huang.zw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turboHZW/socket-server/issues"
+  },
+  "homepage": "https://github.com/turboHZW/socket-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
