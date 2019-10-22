@@ -9,7 +9,7 @@ var server = app.listen(4000, () => {
 
 var io = socket(server);
 io.on('connection', (socket) => {
-    
+
     console.log('made socket connection', socket.id);
 
     // chatroom page
@@ -73,7 +73,9 @@ var handle_chatroom_page = (socket) => {
 };
 
 // whiteboard page
-var handle_whiteboard_page = (socket) => {}
+var handle_whiteboard_page = (socket) => {
+    socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+}
 
 // editor page
 var handle_editor_page = (socket) => {}
