@@ -78,4 +78,6 @@ var handle_whiteboard_page = (socket) => {
 }
 
 // editor page
-var handle_editor_page = (socket) => {}
+var handle_editor_page = (socket) => {
+    socket.on('editing', (data) => socket.broadcast.emit('editing', data));
+}
