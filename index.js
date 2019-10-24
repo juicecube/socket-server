@@ -30,14 +30,12 @@ io.on('connection', (socket) => {
 var handle_slides_page = (socket) => {
 
   socket.on('previous', (data) => {
-    currentSlide = currentSlide - 1 <= 0 ? 0 : currentSlide - 1;
     socket.broadcast.emit('change_slide', {
       num: data.num,
     });
   });
 
   socket.on('next', (data) => {
-    currentSlide = currentSlide + 1 >= total - 1 ? total - 1 : currentSlide + 1;
     socket.broadcast.emit('change_slide', {
       num: data.num,
     });
