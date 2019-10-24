@@ -27,27 +27,19 @@ io.on('connection', (socket) => {
 });
 
 // slides page
-var total = 3;
-var currentSlide = 0;
 var handle_slides_page = (socket) => {
-
-  socket.on('current', (data) => {
-    socket.broadcast.emit('change_slide', {
-      num: currentSlide
-    });
-  });
 
   socket.on('previous', (data) => {
     currentSlide = currentSlide - 1 <= 0 ? 0 : currentSlide - 1;
     socket.broadcast.emit('change_slide', {
-      num: currentSlide
+      num: data.num,
     });
   });
 
   socket.on('next', (data) => {
     currentSlide = currentSlide + 1 >= total - 1 ? total - 1 : currentSlide + 1;
     socket.broadcast.emit('change_slide', {
-      num: currentSlide
+      num: data.num,
     });
   });
 };
@@ -104,9 +96,9 @@ var handle_chatroom_page = (socket) => {
 // whiteboard page
 var handle_whiteboard_page = (socket) => {
     socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
-}
+};
 
 // editor page
 var handle_editor_page = (socket) => {
     socket.on('editing', (data) => socket.broadcast.emit('editing', data));
-}
+};
