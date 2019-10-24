@@ -12,6 +12,9 @@ io.on('connection', (socket) => {
 
     console.log('made socket connection', socket.id);
 
+    // slides page
+    handle_slides_page(socket);
+
     // chatroom page
     handle_chatroom_page(socket);
 
@@ -22,6 +25,32 @@ io.on('connection', (socket) => {
     handle_editor_page(socket);
 
 });
+
+// slides page
+var total = 3;
+var currentSlide = 0;
+var handle_slides_page = (socket) => {
+
+  socket.on('current', (data) => {
+    socket.broadcast.emit('change_slide', {
+      num: currentSlide
+    });
+  });
+
+  socket.on('previous', (data) => {
+    currentSlide = currentSlide - 1 <= 0 ? 0 : currentSlide - 1;
+    socket.broadcast.emit('change_slide', {
+      num: currentSlide
+    });
+  });
+
+  socket.on('next', (data) => {
+    currentSlide = currentSlide + 1 >= total - 1 ? total - 1 : currentSlide + 1;
+    socket.broadcast.emit('change_slide', {
+      num: currentSlide
+    });
+  });
+};
 
 // chatroom page
 var numUsers = 0;
